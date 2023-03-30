@@ -65,6 +65,14 @@ module "container" {
         protocol = "TCP"
       }]
 
+      environment_variables = {
+        "MY_VARIABLE" = "value"
+      }
+
+      secure_environment_variables = {
+        "SECURE_VARIABLE" = "secure_value"
+      }
+
       volumes = [
         {
           name       = "tools-volume"

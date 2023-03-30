@@ -20,6 +20,9 @@ resource "azurerm_container_group" "this" {
       cpu    = container.value["cpu"]
       memory = container.value["memory"]
 
+      environment_variables        = container.value["environment_variables"]
+      secure_environment_variables = container.value["secure_environment_variables"]
+
       dynamic "ports" {
         for_each = container.value["ports"]
 
