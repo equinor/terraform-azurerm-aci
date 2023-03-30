@@ -42,6 +42,14 @@ module "container" {
     cpu    = 1
     memory = 1
 
+    environment_variables = {
+      "MY_VARIABLE" = "value"
+    }
+
+    secure_environment_variables = {
+      "SECURE_VARIABLE" = "secure_value"
+    }
+
     ports = [{
       port     = 443
       protocol = "TCP"
