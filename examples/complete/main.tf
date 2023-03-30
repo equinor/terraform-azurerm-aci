@@ -20,8 +20,9 @@ module "container" {
   location            = azurerm_resource_group.example.location
 
   ip_address_type             = "None"
-  dns_name_label              = ""
-  dns_name_label_reuse_policy = "Unsecure"
+  dns_name_label              = null
+  dns_name_label_reuse_policy = null
+  subnet_ids                  = []
 
   containers = [{
     name   = "hello-world"

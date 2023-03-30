@@ -7,6 +7,7 @@ resource "azurerm_container_group" "this" {
   ip_address_type             = var.ip_address_type
   dns_name_label              = var.dns_name_label
   dns_name_label_reuse_policy = var.dns_name_label_reuse_policy
+  subnet_ids                  = var.subnet_ids
   exposed_port                = null # Automatically set based on containers[*].ports
 
   dynamic "container" {

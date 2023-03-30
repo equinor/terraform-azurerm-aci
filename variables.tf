@@ -44,13 +44,19 @@ variable "ip_address_type" {
 variable "dns_name_label" {
   description = "A DNS name label for this Container Instance."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "dns_name_label_reuse_policy" {
   description = "The reuse policy to use for the DNS name label."
   type        = string
-  default     = "Unsecure"
+  default     = null
+}
+
+variable "subnet_ids" {
+  description = "A list of subnet IDs to be assigned to this Container Instance."
+  type        = list(string)
+  default     = []
 }
 
 variable "tags" {
