@@ -28,6 +28,8 @@ module "container" {
   location                    = azurerm_resource_group.example.location
   log_analytics_workspace_id  = module.log_analytics.workspace_customer_id
   log_analytics_workspace_key = module.log_analytics.primary_shared_key
+  os_type                     = "Linux"
+  restart_policy              = "Always"
 
   ip_address_type             = "None"
   dns_name_label              = null
