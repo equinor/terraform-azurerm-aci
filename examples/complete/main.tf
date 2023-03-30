@@ -22,7 +22,7 @@ module "container" {
   ip_address_type             = "None"
   dns_name_label              = null
   dns_name_label_reuse_policy = null
-  subnet_ids                  = []
+  subnet_ids                  = null
 
   containers = [{
     name   = "hello-world"

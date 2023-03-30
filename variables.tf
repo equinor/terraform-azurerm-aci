@@ -56,7 +56,7 @@ variable "dns_name_label_reuse_policy" {
 variable "subnet_ids" {
   description = "A list of subnet IDs to be assigned to this Container Instance."
   type        = list(string)
-  default     = []
+  default     = null
 }
 
 variable "tags" {
