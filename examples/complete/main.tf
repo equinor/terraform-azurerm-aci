@@ -45,4 +45,6 @@ module "container" {
       protocol = "TCP"
     }]
   }]
+
+  dns_config = null # Only supported when "ip_address_type" is "Private"
 }

@@ -30,6 +30,14 @@ resource "azurerm_container_group" "this" {
     }
   }
 
+  dynamic "dns_config" {
+    for_each = var.dns_config != null ? [var.dns_config] : []
+
+    content {
+      nameservers = dns_config.value["nameservers"]
+    }
+  }
+
   diagnostics {
     log_analytics {
       workspace_id  = var.log_analytics_workspace_id
