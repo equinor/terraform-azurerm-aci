@@ -27,34 +27,41 @@ variable "log_analytics_workspace_key" {
 variable "containers" {
   description = "A list of containers to create for this Container Instance."
 
+  # WARNING: It's not yet possible to mark individual object properties as sensitive (hashicorp/terraform#32414).
+  #
+  # The following properties should've been marked as sensitive:
+  # - secure_environment_variables
+  # - volumes[*].secret
+  # - volumes[*].storage_account_key
+  #
+  # As a result, the value of these properties could be exposed if used as the value of a non-sensitive
+  # argument for a resource inside this module. Use these properties at your own risk!
+  #
+  # An option would be to use the "sensitive()" function to force the values to be sensitive before passing them to this
+  # module. If you're passing a sensitive attribute from another resource, it will most likely already be marked as
+  # sensitive by that resource.
   type = list(object({
     name   = string
     image  = string
     cpu    = string
     memory = string
 
-    environment_variables        = optional(map(string), {})
-    secure_environment_variables = optional(map(string), {})
-    # WARNING: It's not yet possible to mark individual object properties as sensitive (hashicorp/terraform#32414).
-    # As a result, the value of "secure_environment_variables" could be exposed if used as the value of a non-sensitive
-    # argument for a resource inside this module. Use "secure_environment_variables" at your own risk!
-    # If you still want to use it, an option would be to use the "sensitive()" function to force the value to be
-    # sensitive before passing it to this module. If you're passing a sensitive attribute from another resource, it will
-    # most likely already be marked as sensitive by that resource.
-
     ports = optional(list(object({
       port     = number
       protocol = optional(string, "TCP")
     })), [])
 
+    environment_variables        = optional(map(string), {})
+    secure_environment_variables = optional(map(string), {}) # TODO: mark as sensitive (hashicorp/terraform#32414)
+
     volumes = optional(list(object({
       name       = string
       mount_path = string
 
-      secret = optional(map(string)) # TODO: mark as sensitive?
+      secret = optional(map(string)) # TODO: mark as sensitive (hashicorp/terraform#32414)
 
       storage_account_name = optional(string)
-      storage_account_key  = optional(string) # TODO: mark as sensitive?
+      storage_account_key  = optional(string) # TODO: mark as sensitive (hashicorp/terraform#32414)
       share_name           = optional(string)
     })))
   }))
