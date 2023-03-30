@@ -18,6 +18,8 @@ module "container" {
   instance_name       = "ci-${random_id.example.hex}"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
+  os_type             = "Linux"
+  restart_policy      = "Always"
 
   ip_address_type             = "None"
   dns_name_label              = null

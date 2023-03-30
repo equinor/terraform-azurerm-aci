@@ -35,6 +35,12 @@ variable "os_type" {
   default     = "Linux"
 }
 
+variable "restart_policy" {
+  description = "The restart policy of this Container Instance."
+  type        = string
+  default     = "Always"
+}
+
 variable "ip_address_type" {
   description = "The IP address type of this Container Instance."
   type        = string

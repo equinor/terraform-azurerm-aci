@@ -3,6 +3,7 @@ resource "azurerm_container_group" "this" {
   resource_group_name = var.resource_group_name
   location            = var.location
   os_type             = var.os_type
+  restart_policy      = var.restart_policy
 
   ip_address_type             = var.ip_address_type
   dns_name_label              = var.dns_name_label
