@@ -13,6 +13,17 @@ variable "location" {
   type        = string
 }
 
+variable "log_analytics_workspace_id" {
+  description = "The workspace (customer) ID of the Log Analytics workspace to send diagnostics to."
+  type        = string
+}
+
+variable "log_analytics_workspace_key" {
+  description = "The shared key of the Log Analytics workspace to send diagnostics to."
+  type        = string
+  sensitive   = true
+}
+
 variable "containers" {
   description = "A list of containers to create for this Container Instance."
 
