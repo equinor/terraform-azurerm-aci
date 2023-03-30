@@ -37,6 +37,17 @@ variable "containers" {
       port     = number
       protocol = optional(string, "TCP")
     })), [])
+
+    volumes = optional(list(object({
+      name       = string
+      mount_path = string
+
+      secret = optional(map(string)) # TODO: mark as sensitive?
+
+      storage_account_name = optional(string)
+      storage_account_key  = optional(string) # TODO: mark as sensitive?
+      share_name           = optional(string)
+    })))
   }))
 }
 

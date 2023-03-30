@@ -19,6 +19,23 @@ module "log_analytics" {
   location            = azurerm_resource_group.example.location
 }
 
+module "storage" {
+  source = "github.com/equinor/terraform-azurerm-storage?ref=v10.2.0"
+
+  account_name                 = "st${random_id.example.hex}"
+  resource_group_name          = azurerm_resource_group.example.name
+  location                     = azurerm_resource_group.example.location
+  log_analytics_workspace_id   = module.log_analytics.workspace_id
+  shared_access_key_enabled    = true
+  network_rules_default_action = "Allow"
+}
+
+resource "azurerm_storage_share" "example" {
+  name                 = "tools"
+  storage_account_name = module.storage.account_name
+  quota                = 5
+}
+
 module "container" {
   # source = "github.com/equinor/terraform-azurerm-container?ref=v0.0.0"
   source = "../.."
@@ -36,17 +53,38 @@ module "container" {
   dns_name_label_reuse_policy = null
   subnet_ids                  = null
 
-  containers = [{
-    name   = "hello-world"
-    image  = "mcr.microsoft.com/azuredocs/aci-helloworld:latest"
-    cpu    = 1
-    memory = 1
+  containers = [
+    {
+      name   = "hello-world"
+      image  = "mcr.microsoft.com/azuredocs/aci-helloworld:latest"
+      cpu    = 1
+      memory = 1
 
-    ports = [{
-      port     = 443
-      protocol = "TCP"
-    }]
-  }]
+      ports = [{
+        port     = 8080
+        protocol = "TCP"
+      }]
+
+      volumes = [
+        {
+          name       = "tools-volume"
+          mount_path = "/aci/tools"
+
+          storage_account_name = module.storage.account_name
+          storage_account_key  = module.storage.primary_access_key
+          share_name           = azurerm_storage_share.example.name
+        },
+        {
+          name       = "secret-volume"
+          mount_path = "/aci/secrets"
+
+          secret = {
+            "secret.txt" = "secret_value"
+          }
+        }
+      ]
+    }
+  ]
 
   dns_config = null # Only supported when "ip_address_type" is "Private"
 }
