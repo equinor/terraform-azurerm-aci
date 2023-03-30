@@ -36,7 +36,5 @@ module "container" {
     }]
   }]
 
-  dns_config = {
-    nameservers = ["1.1.1.1"]
-  }
+  dns_config = null # Only supported when "ip_address_type" is "Private"
 }

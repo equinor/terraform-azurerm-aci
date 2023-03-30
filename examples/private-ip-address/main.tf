@@ -54,4 +54,9 @@ module "container" {
       port = 443
     }]
   }]
+
+  # Optional: Set DNS configuration
+  dns_config = {
+    nameservers = ["1.1.1.1"]
+  }
 }
