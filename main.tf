@@ -31,5 +31,12 @@ resource "azurerm_container_group" "this" {
     }
   }
 
+  diagnostics {
+    log_analytics {
+      workspace_id  = var.log_analytics_workspace_id
+      workspace_key = var.log_analytics_workspace_key
+    }
+  }
+
   tags = var.tags
 }
