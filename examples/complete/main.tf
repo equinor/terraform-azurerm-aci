@@ -35,4 +35,8 @@ module "container" {
       protocol = "TCP"
     }]
   }]
+
+  dns_config = {
+    nameservers = ["1.1.1.1"]
+  }
 }

@@ -59,6 +59,16 @@ variable "subnet_ids" {
   default     = null
 }
 
+variable "dns_config" {
+  description = "The DNS configuration of this Container Instance."
+
+  type = object({
+    nameservers = list(string)
+  })
+
+  default = null
+}
+
 variable "tags" {
   description = "A map of tags to assign to the resources."
   type        = map(string)
