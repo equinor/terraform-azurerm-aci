@@ -19,9 +19,9 @@ module "container" {
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
 
-  ip_address_type             = "None"
-  dns_name_label              = ""
-  dns_name_label_reuse_policy = "Unsecure"
+  ip_address_type             = "Public"
+  dns_name_label              = "aci-label-${random_id.example.hex}"
+  dns_name_label_reuse_policy = "TenantReuse"
 
   containers = [{
     name   = "hello-world"
@@ -30,8 +30,7 @@ module "container" {
     memory = 1
 
     ports = [{
-      port     = 443
-      protocol = "TCP"
+      port = 443
     }]
   }]
 }

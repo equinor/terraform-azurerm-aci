@@ -21,6 +21,11 @@ variable "containers" {
     image  = string
     cpu    = string
     memory = string
+
+    ports = optional(list(object({
+      port     = number
+      protocol = optional(string, "TCP")
+    })), [])
   }))
 }
 
@@ -28,6 +33,24 @@ variable "os_type" {
   description = "The OS type of this Container Instance."
   type        = string
   default     = "Linux"
+}
+
+variable "ip_address_type" {
+  description = "The IP address type of this Container Instance."
+  type        = string
+  default     = "None"
+}
+
+variable "dns_name_label" {
+  description = "A DNS name label for this Container Instance."
+  type        = string
+  default     = ""
+}
+
+variable "dns_name_label_reuse_policy" {
+  description = "The reuse policy to use for the DNS name label."
+  type        = string
+  default     = "Unsecure"
 }
 
 variable "tags" {
