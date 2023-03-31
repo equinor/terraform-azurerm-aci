@@ -113,8 +113,4 @@ module "container" {
       password = module.acr.registry_admin_password
     }
   ]
-
-  depends_on = [
-    azurerm_role_assignment.example
-  ]
 }
