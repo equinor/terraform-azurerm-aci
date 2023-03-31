@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.1.0](https://github.com/equinor/terraform-azurerm-container/compare/v2.0.0...v2.1.0) (2023-03-31)
+
+
+### Features
+
+* configure identity ([#20](https://github.com/equinor/terraform-azurerm-container/issues/20)) ([0ed48b1](https://github.com/equinor/terraform-azurerm-container/commit/0ed48b1c43f60c12e354b74a62381d8a55a80545)), closes [#12](https://github.com/equinor/terraform-azurerm-container/issues/12)
+* create container volumes ([#18](https://github.com/equinor/terraform-azurerm-container/issues/18)) ([6205b80](https://github.com/equinor/terraform-azurerm-container/commit/6205b8089f52a74cb5eb684a81c06cb40062887a))
+* set container environment variables ([#17](https://github.com/equinor/terraform-azurerm-container/issues/17)) ([fdefc54](https://github.com/equinor/terraform-azurerm-container/commit/fdefc54f2a27d9ca07f0018030f34da9d00c7a4d))
+* set DNS config ([#15](https://github.com/equinor/terraform-azurerm-container/issues/15)) ([ee87d07](https://github.com/equinor/terraform-azurerm-container/commit/ee87d070a6b9c8b2ee7ec3d9e5ec2f35bec8d546))
+* set image registry credentials ([#19](https://github.com/equinor/terraform-azurerm-container/issues/19)) ([34ba25c](https://github.com/equinor/terraform-azurerm-container/commit/34ba25c4657ce88a752d76a55234189c588704de))
+* set restart policy ([#14](https://github.com/equinor/terraform-azurerm-container/issues/14)) ([d0472f7](https://github.com/equinor/terraform-azurerm-container/commit/d0472f71fed2446e08e3914a1adcb1e4861efea5))
+
 ## [2.0.0](https://github.com/equinor/terraform-azurerm-container/compare/v1.0.0...v2.0.0) (2023-03-30)
 
 
