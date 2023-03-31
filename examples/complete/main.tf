@@ -19,6 +19,16 @@ module "log_analytics" {
   location            = azurerm_resource_group.example.location
 }
 
+module "acr" {
+  source = "github.com/equinor/terraform-azurerm-acr?ref=v5.0.0"
+
+  registry_name              = "cr${random_id.example.hex}"
+  resource_group_name        = azurerm_resource_group.example.name
+  location                   = azurerm_resource_group.example.location
+  log_analytics_workspace_id = module.log_analytics.workspace_id
+  admin_enabled              = true
+}
+
 module "storage" {
   source = "github.com/equinor/terraform-azurerm-storage?ref=v10.2.0"
 
@@ -95,4 +105,12 @@ module "container" {
   ]
 
   dns_config = null # Only supported when "ip_address_type" is "Private"
+
+  image_registry_credentials = [
+    {
+      server   = module.acr.registry_login_server
+      username = module.acr.registry_admin_username
+      password = module.acr.registry_admin_password
+    }
+  ]
 }
