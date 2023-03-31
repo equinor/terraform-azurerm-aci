@@ -27,19 +27,6 @@ variable "log_analytics_workspace_key" {
 variable "containers" {
   description = "A list of containers to create for this Container Instance."
 
-  # WARNING: It's not yet possible to mark individual object properties as sensitive (hashicorp/terraform#32414).
-  #
-  # The following properties should've been marked as sensitive:
-  # - secure_environment_variables
-  # - volumes[*].secret
-  # - volumes[*].storage_account_key
-  #
-  # As a result, the value of these properties could be exposed if used as the value of a non-sensitive
-  # argument for a resource inside this module. Use these properties at your own risk!
-  #
-  # An option would be to use the "sensitive()" function to force the values to be sensitive before passing them to this
-  # module. If you're passing a sensitive attribute from another resource, it will most likely already be marked as
-  # sensitive by that resource.
   type = list(object({
     name   = string
     image  = string
