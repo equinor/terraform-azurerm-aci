@@ -46,18 +46,6 @@ resource "azurerm_storage_share" "example" {
   quota                = 5
 }
 
-resource "azurerm_user_assigned_identity" "example" {
-  name                = "id-acr-user-${random_id.example.hex}"
-  resource_group_name = azurerm_resource_group.example.name
-  location            = azurerm_resource_group.example.location
-}
-
-resource "azurerm_role_assignment" "example" {
-  scope                = module.acr.registry_id
-  role_definition_name = "AcrPull"
-  principal_id         = azurerm_user_assigned_identity.example.principal_id
-}
-
 module "container" {
   # source = "github.com/equinor/terraform-azurerm-container?ref=v0.0.0"
   source = "../.."
@@ -123,10 +111,6 @@ module "container" {
       server   = module.acr.registry_login_server
       username = module.acr.registry_admin_username
       password = module.acr.registry_admin_password
-    },
-    {
-      server                    = module.acr.registry_login_server
-      user_assigned_identity_id = azurerm_user_assigned_identity.example.id
     }
   ]
 
