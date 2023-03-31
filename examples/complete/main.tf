@@ -87,7 +87,7 @@ module "container" {
           mount_path = "/aci/secrets"
 
           secret = {
-            "secret.txt" = "secret_value"
+            "secret.txt" = base64encode(file("${module.path}/secret.txt}"))
           }
         }
       ]

@@ -39,10 +39,7 @@ resource "azurerm_container_group" "this" {
           name       = volume.value["name"]
           mount_path = volume.value["mount_path"]
 
-          secret = volume.value["secret"] != null ? {
-            # Convert all values in map to Base64 encoded string
-            for k, v in volume.value["secret"] : k => base64encode(v)
-          } : null
+          secret = volume.value["secret"]
 
           storage_account_name = volume.value["storage_account_name"]
           storage_account_key  = volume.value["storage_account_key"]
