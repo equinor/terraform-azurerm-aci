@@ -50,7 +50,7 @@ variable "containers" {
       storage_account_name = optional(string)
       storage_account_key  = optional(string) # TODO: mark as sensitive (hashicorp/terraform#32414)
       share_name           = optional(string)
-    })))
+    })), [])
   }))
 }
 
