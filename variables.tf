@@ -113,6 +113,17 @@ variable "image_registry_credentials" {
   default = []
 }
 
+variable "identity" {
+  description = "The identity or identities to configure for this Container Instance."
+
+  type = object({
+    type         = optional(string, "SystemAssigned")
+    identity_ids = optional(list(string), [])
+  })
+
+  default = null
+}
+
 variable "tags" {
   description = "A map of tags to assign to the resources."
   type        = map(string)

@@ -106,11 +106,14 @@ module "container" {
 
   dns_config = null # Only supported when "ip_address_type" is "Private"
 
-  image_registry_credentials = [
-    {
-      server   = module.acr.registry_login_server
-      username = module.acr.registry_admin_username
-      password = module.acr.registry_admin_password
-    }
-  ]
+  image_registry_credentials = [{
+    server   = module.acr.registry_login_server
+    username = module.acr.registry_admin_username
+    password = module.acr.registry_admin_password
+  }]
+
+  identity = {
+    type         = "SystemAssigned"
+    identity_ids = []
+  }
 }
