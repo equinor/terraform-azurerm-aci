@@ -19,6 +19,28 @@ module "log_analytics" {
   location            = azurerm_resource_group.example.location
 }
 
+module "acr" {
+  source = "github.com/equinor/terraform-azurerm-acr?ref=v5.0.0"
+
+  registry_name              = "cr${random_id.this.hex}"
+  resource_group_name        = azurerm_resource_group.example.name
+  location                   = azurerm_resource_group.example.location
+  log_analytics_workspace_id = module.log_analytics.workspace_id
+  admin_enabled              = true
+}
+
+resource "azurerm_user_assigned_identity" "example" {
+  name                = "id-acr-user-${random_id.example.hex}"
+  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.example.location
+}
+
+resource "azurerm_role_assignment" "example" {
+  scope                = module.acr.registry_id
+  role_definition_name = "AcrPull"
+  principal_id         = azurerm_user_assigned_identity.example.principal_id
+}
+
 module "container" {
   # source = "github.com/equinor/terraform-azurerm-container?ref=v0.0.0"
   source = "../.."
@@ -57,4 +79,20 @@ module "container" {
   }]
 
   dns_config = null # Only supported when "ip_address_type" is "Private"
+
+  image_registry_credentials = [
+    {
+      server   = module.acr.registry_login_server
+      username = module.acr.registry_admin_username
+      password = module.acr.registry_admin_password
+    },
+    {
+      server                    = module.acr.registry_login_server
+      user_assigned_identity_id = azurerm_user_assigned_identity.example.id
+    }
+  ]
+
+  depends_on = [
+    azurerm_role_assignment.example
+  ]
 }
