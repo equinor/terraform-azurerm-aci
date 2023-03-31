@@ -22,7 +22,7 @@ module "log_analytics" {
 module "acr" {
   source = "github.com/equinor/terraform-azurerm-acr?ref=v5.0.0"
 
-  registry_name              = "cr${random_id.this.hex}"
+  registry_name              = "cr${random_id.example.hex}"
   resource_group_name        = azurerm_resource_group.example.name
   location                   = azurerm_resource_group.example.location
   log_analytics_workspace_id = module.log_analytics.workspace_id
