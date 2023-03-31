@@ -5,7 +5,7 @@
 
 Terraform module which creates Azure Container Instances resources.
 
-## Warning
+## WARNING
 
 This module uses variables of type `list(object)` or `map(object)` to dynamically create Terraform blocks based on the input value.
 
