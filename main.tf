@@ -57,6 +57,15 @@ resource "azurerm_container_group" "this" {
     }
   }
 
+  dynamic "identity" {
+    for_each = var.identity != null ? [var.identity] : []
+
+    content {
+      type         = identity.value["type"]
+      identity_ids = identity.value["identity_ids"]
+    }
+  }
+
   diagnostics {
     log_analytics {
       workspace_id  = var.log_analytics_workspace_id

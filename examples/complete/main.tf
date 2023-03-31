@@ -95,4 +95,9 @@ module "container" {
   ]
 
   dns_config = null # Only supported when "ip_address_type" is "Private"
+
+  identity = {
+    type         = "SystemAssigned"
+    identity_ids = []
+  }
 }
