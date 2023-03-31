@@ -100,6 +100,19 @@ variable "dns_config" {
   default = null
 }
 
+variable "image_registry_credentials" {
+  description = "A list of image registry credentials to configure for this Container Instance."
+
+  type = list(object({
+    server                    = string
+    username                  = optional(string)
+    password                  = optional(string) # TODO: mark as sensitive (hashicorp/terraform#32414)
+    user_assigned_identity_id = optional(string)
+  }))
+
+  default = []
+}
+
 variable "identity" {
   description = "The identity or identities to configure for this Container Instance."
 

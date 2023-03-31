@@ -16,6 +16,7 @@ The following object properties should be sensitive:
 - `containers[*].secure_environment_variables`
 - `containers[*].volumes[*].secret`
 - `containers[*].volumes[*].storage_account_key`
+- `image_registry_credentials[*].password`
 
 As a result, the values of these properties could be exposed if used as the value of a non-sensitive resource argument inside this module.
 
