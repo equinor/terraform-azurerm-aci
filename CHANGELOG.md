@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/equinor/terraform-azurerm-container/compare/v2.1.0...v2.2.0) (2023-04-03)
+
+
+### Features
+
+* output IP address ([#21](https://github.com/equinor/terraform-azurerm-container/issues/21)) ([81f4c48](https://github.com/equinor/terraform-azurerm-container/commit/81f4c4821d7d58daae125a4c4a3a362854b96130))
+
 ## [2.1.0](https://github.com/equinor/terraform-azurerm-container/compare/v2.0.0...v2.1.0) (2023-03-31)
 
 
