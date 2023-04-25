@@ -13,6 +13,20 @@ variable "location" {
   type        = string
 }
 
+variable "diagnostic_setting_name" {
+  description = "the name of this diagnostic setting"
+  type        = string
+  default     = "audit_logs"
+}
+
+variable "diagnostic_setting_enabled_log_categories" {
+  description = "A list of log categories to be anbled for this diagnostic setting."
+  type        = list(string)
+  default = ["ContainerRegistryLoginEvent",
+    "ContainerRegistryRepositoryEvents"
+  ]
+}
+
 variable "log_analytics_workspace_id" {
   description = "The workspace (customer) ID of the Log Analytics workspace to send diagnostics to."
   type        = string
