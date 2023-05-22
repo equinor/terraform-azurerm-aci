@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://github.com/equinor/terraform-azurerm-container/compare/v2.2.0...v2.3.0) (2023-05-22)
+
+
+### Features
+
+* output instance ID ([#24](https://github.com/equinor/terraform-azurerm-container/issues/24)) ([abf8ae1](https://github.com/equinor/terraform-azurerm-container/commit/abf8ae19dc79fde80f7f9dd74a65bc3f205e7211))
+
 ## [2.2.0](https://github.com/equinor/terraform-azurerm-container/compare/v2.1.0...v2.2.0) (2023-04-03)
 
 
