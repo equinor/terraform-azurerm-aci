@@ -1,3 +1,8 @@
+output "instance_id" {
+  description = "The ID of this Container Instance."
+  value       = azurerm_container_group.this.id
+}
+
 output "identity_principal_id" {
   description = "The principal ID of the system-assigned identity of this Container Instance."
   value       = try(azurerm_container_group.this.identity[0].principal_id, null)
