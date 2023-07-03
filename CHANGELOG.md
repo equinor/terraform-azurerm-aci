@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/equinor/terraform-azurerm-aci/compare/v2.3.0...v3.0.0) (2023-07-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* variable `instance_name` renamed to `container_group_name`, output `instance_id` renamed to `container_group_id.`
+
+### Code Refactoring
+
+* rename variables and outputs ([#29](https://github.com/equinor/terraform-azurerm-aci/issues/29)) ([1e1509c](https://github.com/equinor/terraform-azurerm-aci/commit/1e1509c2ca37bf4b88184027715f22da5da96f08))
+
 ## [2.3.0](https://github.com/equinor/terraform-azurerm-container/compare/v2.2.0...v2.3.0) (2023-05-22)
 
 
