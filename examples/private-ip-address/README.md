@@ -1,3 +1,3 @@
 # Private IP address example
 
-Example Terraform configuration which shows how to create Azure Container Instances with a private IP address.
+Example Terraform configuration which shows how to create an ACI container group with a private IP address.
