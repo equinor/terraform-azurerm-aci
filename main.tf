@@ -1,5 +1,5 @@
 resource "azurerm_container_group" "this" {
-  name                = var.instance_name
+  name                = var.container_group_name
   resource_group_name = var.resource_group_name
   location            = var.location
   os_type             = var.os_type

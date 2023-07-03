@@ -1,5 +1,5 @@
-variable "instance_name" {
-  description = "The name of this Container Instance."
+variable "container_group_name" {
+  description = "The name of this Container Group."
   type        = string
 }
 
@@ -25,7 +25,7 @@ variable "log_analytics_workspace_key" {
 }
 
 variable "containers" {
-  description = "A list of containers to create for this Container Instance."
+  description = "A list of containers to create for this Container Group."
 
   type = list(object({
     name   = string
@@ -55,25 +55,25 @@ variable "containers" {
 }
 
 variable "os_type" {
-  description = "The OS type of this Container Instance."
+  description = "The OS type of this Container Group."
   type        = string
   default     = "Linux"
 }
 
 variable "restart_policy" {
-  description = "The restart policy of this Container Instance."
+  description = "The restart policy of this Container Group."
   type        = string
   default     = "Always"
 }
 
 variable "ip_address_type" {
-  description = "The IP address type of this Container Instance."
+  description = "The IP address type of this Container Group."
   type        = string
   default     = "None"
 }
 
 variable "dns_name_label" {
-  description = "A DNS name label for this Container Instance."
+  description = "A DNS name label for this Container Group."
   type        = string
   default     = null
 }
@@ -85,13 +85,13 @@ variable "dns_name_label_reuse_policy" {
 }
 
 variable "subnet_ids" {
-  description = "A list of subnet IDs to be assigned to this Container Instance."
+  description = "A list of subnet IDs to be assigned to this Container Group."
   type        = list(string)
   default     = null
 }
 
 variable "dns_config" {
-  description = "The DNS configuration of this Container Instance."
+  description = "The DNS configuration of this Container Group."
 
   type = object({
     nameservers = list(string)
@@ -101,7 +101,7 @@ variable "dns_config" {
 }
 
 variable "image_registry_credentials" {
-  description = "A list of image registry credentials to configure for this Container Instance."
+  description = "A list of image registry credentials to configure for this Container Group."
 
   type = list(object({
     server                    = string
@@ -114,7 +114,7 @@ variable "image_registry_credentials" {
 }
 
 variable "identity" {
-  description = "The identity or identities to configure for this Container Instance."
+  description = "The identity or identities to configure for this Container Group."
 
   type = object({
     type         = optional(string, "SystemAssigned")

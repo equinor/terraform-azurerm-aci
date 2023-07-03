@@ -1,4 +1,4 @@
-output "instance_id" {
+output "container_group_id" {
   description = "The ID of this Container Instance."
   value       = azurerm_container_group.this.id
 }
