@@ -41,11 +41,11 @@ module "network" {
   }
 }
 
-module "container" {
-  # source = "github.com/equinor/terraform-azurerm-container?ref=v0.0.0"
+module "aci" {
+  # source = "github.com/equinor/terraform-azurerm-aci?ref=v0.0.0"
   source = "../.."
 
-  instance_name               = "ci-${random_id.example.hex}"
+  container_group_name        = "ci-${random_id.example.hex}"
   resource_group_name         = azurerm_resource_group.example.name
   location                    = azurerm_resource_group.example.location
   log_analytics_workspace_id  = module.log_analytics.workspace_customer_id
